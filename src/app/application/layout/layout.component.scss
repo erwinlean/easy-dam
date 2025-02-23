@@ -1,0 +1,14 @@
+.main-layout {
+	display: flex;
+	min-height: 100vh;
+}
+  
+.main-content {
+	flex-grow: 1;
+}
+  
+@media (max-width: 768px) {
+	.main-content {
+	  	padding-left: 0;
+	}
+}

@@ -1,5 +1,8 @@
 <app-header></app-header>
-<main>
-  <router-outlet></router-outlet>
+<main class="main-layout flex">
+  	<app-aside></app-aside>
+  	<div class="main-content flex-grow">
+    	<router-outlet></router-outlet>
+  	</div>
 </main>
 <app-footer></app-footer>

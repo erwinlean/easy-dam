@@ -1,0 +1,27 @@
+{
+	"name": "EasyPim",
+	"short_name": "EasyPim",
+	"description": "La aplicación para gestionar assets.",
+	"start_url": "/webapp/home",
+	"scope": "/webapp/",
+	"display": "standalone",
+	"background_color": "#ffffff",
+	"theme_color": "#4CAF50",
+	"icons": [
+		{
+			"src": "/assets/icons/favicon.ico",
+			"sizes": "48x48",
+			"type": "image/x-icon"
+		},
+		{
+			"src": "/assets/logos/easy-dam-logo.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "/assets/logos/easy-dam-logo_text.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	]
+}

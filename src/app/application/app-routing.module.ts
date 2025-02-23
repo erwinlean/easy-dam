@@ -13,14 +13,10 @@ const routes: Routes = [
 		children: [
 			{
 				path: 'auth',
-				loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+				loadChildren: () => import('./@auth/auth.module').then(m => m.AuthModule)
 			},
 			{ path: '', pathMatch: 'full', redirectTo: 'auth' }
 		]
-	},
-	{ 
-		path: 'forbidden',
-		component: ForbiddenComponent
 	},
 	{
 		path: '**',
@@ -28,6 +24,10 @@ const routes: Routes = [
 		children: [
 			{ path: '**', component: NotFoundComponent }
 		]
+	},
+	{ 
+		path: 'forbidden',
+		component: ForbiddenComponent
 	}
 ];
 
@@ -35,4 +35,4 @@ const routes: Routes = [
 	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule { };

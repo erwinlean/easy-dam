@@ -1,0 +1,11 @@
+.aside-container {
+	position: relative;
+}
+  
+aside {
+	transition: width 0.3s ease-in-out;
+}
+  
+aside.dragging {
+	transition: none;
+} 
