@@ -3,5 +3,12 @@
 }
 
 li {
-	transition: background-color 0.2s, color 0.2s;
-}
+	cursor: pointer;
+	padding: 0.25rem;
+	border-radius: 0.25rem;
+	transition: background-color 0.3s ease;
+  
+	&:hover {
+	  	background-color: #ebf8ff;
+	}
+}  

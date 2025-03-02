@@ -8,17 +8,17 @@ import { AsideComponent } from './aside/aside.component';
 import { FooterComponent } from './footer/footer.component';
 
 @Component({
-  	selector: 'app-layout',
-  	standalone: true,
-  	imports: [
-		RouterModule, 
-		CommonModule, 
-		HeaderComponent, 
-		AsideComponent,
-		FooterComponent
-	],
-  	templateUrl: './layout.component.html',
-  	styleUrls: ['./layout.component.scss']
+    selector: 'app-layout',
+	standalone: true,
+    imports: [
+        RouterModule,
+        CommonModule,
+        HeaderComponent,
+        AsideComponent,
+        FooterComponent
+    ],
+    templateUrl: './layout.component.html',
+    styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent {
 

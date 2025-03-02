@@ -5,11 +5,11 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
-	selector: 'app-header',
+    selector: 'app-header',
 	standalone: true,
-	imports: [ CommonModule ],
-	templateUrl: './header.component.html',
-	styleUrls: ['./header.component.scss']
+    imports: [CommonModule],
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
 	public showThemeOption: boolean = false;

@@ -7,11 +7,11 @@ import { Router } from '@angular/router';
 import { PLATFORM_ID } from '@angular/core';
 
 @Component({
-  	selector: 'app-aside',
-  	standalone: true,
-  	imports: [CommonModule, RouterModule],
-  	templateUrl: './aside.component.html',
-  	styleUrls: ['./aside.component.scss']
+    selector: 'app-aside',
+	standalone: true,
+    imports: [CommonModule, RouterModule],
+    templateUrl: './aside.component.html',
+    styleUrls: ['./aside.component.scss']
 })
 export class AsideComponent implements AfterViewInit, OnDestroy {
   	readonly initialWidth: number = 256;
@@ -91,22 +91,22 @@ export class AsideComponent implements AfterViewInit, OnDestroy {
   	};
 
   	public navigateToDashboard(): void {
-  	  	this.router.navigate(['app/main/dashboard']);
+  	  	this.router.navigate(['app/dashboard']);
   	};
 
   	public navigateToSettings(): void {
-  	  	this.router.navigate(['app/main/settings']);
+  	  	this.router.navigate(['app/settings']);
   	};
 
   	public navigateToUserManagement(): void {
-  	  	this.router.navigate(['app/main/user-management']);
+  	  	this.router.navigate(['app/user-management']);
   	};
 
 	public navigateToAssets(): void {
-		this.router.navigate(['app/main/assets']);
+		this.router.navigate(['app/assets']);
   	};
 
   	public navigateToRandom(): void {
-		this.router.navigate(['app/main/random']);
+		this.router.navigate(['app/random']);
 	};
 };

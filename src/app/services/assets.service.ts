@@ -1,7 +1,8 @@
 'use stirct';
 
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs-compat';
+import { of } from 'rxjs';
 
 @Injectable({
   	providedIn: 'root'
@@ -14,7 +15,19 @@ export class AssetsService {
 		  "name": "John Doe",
 		  "folders": [
 			{
-			  "name": "Carpeta 1",
+				"name": "Carpeta 0",
+			},
+			{
+				"name": "Carpeta 1",
+			},
+			{
+				"name": "Carpeta 2",
+			},
+			{
+				"name": "Carpeta 3",
+			},
+			{
+			  "name": "Carpeta 4",
 			  "assets": [
 				{
 				  "id": "asset1",
