@@ -12,6 +12,9 @@ import { CommonModule } from '@angular/common';
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+	private readonly PROFILE_PATH: string = '/app/users/profile';
+	private readonly LOGIN_PATH: string = '/login';
+
 	public showThemeOption: boolean = false;
 	public showLanguageMenu: boolean = false;
 	public showNotificationsMenu: boolean = false;
@@ -64,7 +67,7 @@ export class HeaderComponent {
 	};
 
 	public goToProfile(): void {
-		this.router.navigate(['/profile']);
+		this.router.navigate([this.PROFILE_PATH]);
 		this.closeAllMenus();
 	};
 	public onNotificationsClick(): void {
@@ -92,7 +95,7 @@ export class HeaderComponent {
 		};
 	};
 	public onExitClick(): void {
-		this.router.navigate(['/login']);
+		this.router.navigate([this.LOGIN_PATH]);
 		this.closeAllMenus();
 	};
 

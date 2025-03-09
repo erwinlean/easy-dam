@@ -1,0 +1,68 @@
+<div class="w-full h-full items-center flex bg-gray-100">
+	<!-- Page Content -->
+	<div class="container mx-auto p-6">
+	  <div class="bg-white shadow-lg rounded-lg p-6 md:max-w-2xl mx-auto">
+		<h2 class="text-3xl font-semibold text-gray-800 mb-6">Editar Perfil</h2>
+  
+		<!-- Form -->
+		<form (ngSubmit)="onSubmit()" class="space-y-6">
+		  
+		  <!-- User Name -->
+		  <div class="flex flex-col">
+			<label for="username" class="text-lg font-medium text-gray-600">Nombre de usuario</label>
+			<input id="username" name="username" type="text" [(ngModel)]="user.username"
+			  class="mt-2 p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+			  placeholder="Ingresa tu nombre de usuario" required>
+		  </div>
+  
+		  <!-- Email -->
+		  <div class="flex flex-col">
+			<label for="email" class="text-lg font-medium text-gray-600">Correo electrónico</label>
+			<input id="email" name="email" type="email" [(ngModel)]="user.email"
+			  class="mt-2 p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+			  placeholder="Ingresa tu correo electrónico" required>
+		  </div>
+  
+		  <!-- Phone Number -->
+		  <div class="flex flex-col">
+			<label for="phone" class="text-lg font-medium text-gray-600">Número de teléfono</label>
+			<input id="phone" name="phone" type="tel" [(ngModel)]="user.phone"
+			  class="mt-2 p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+			  placeholder="Ingresa tu número de teléfono" required>
+		  </div>
+  
+		  <!-- Address -->
+		  <div class="flex flex-col">
+			<label for="address" class="text-lg font-medium text-gray-600">Dirección</label>
+			<textarea id="address" name="address" [(ngModel)]="user.address"
+			  class="mt-2 p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+			  placeholder="Ingresa tu dirección" rows="3" required></textarea>
+		  </div>
+  
+		  <!-- Profile Picture -->
+		  <div class="flex flex-col">
+			<label for="profile-picture" class="text-lg font-medium text-gray-600">Foto de perfil</label>
+			<div class="flex items-center space-x-4 mt-2">
+			  <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-gray-300">
+				<img *ngIf="user.profilePicture" [src]="user.profilePicture" alt="Foto de perfil" class="w-full h-full object-cover">
+				<div *ngIf="!user.profilePicture" class="w-full h-full bg-gray-300 flex items-center justify-center">
+				  <span class="text-white">+<span class="text-sm">Subir</span></span>
+				</div>
+			  </div>
+			  <button type="button" (click)="fileInput.click()" class="text-sm text-blue-500 hover:underline">
+				Cambiar imagen
+			  </button>
+			  <input #fileInput type="file" (change)="onProfileImageChange($event)" class="hidden">
+			</div>
+		  </div>
+  
+		  <!-- Save Button -->
+		  <div class="flex justify-end">
+			<button type="submit" class="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-200">
+			  Guardar cambios
+			</button>
+		  </div>
+		</form>
+	  </div>
+	</div>
+</div>  

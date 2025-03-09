@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserEditComponent } from './edit/user-edit.component';
 import { UserListComponent } from './list/user-list.component';
 import { UserNewComponent } from './new/user-new.component';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { UserViewComponent } from './view/user-view.component';
 
 const routes: Routes = [
@@ -20,6 +21,10 @@ const routes: Routes = [
 	{
 		path: 'new',
 		component: UserNewComponent
+	},
+	{
+		path: 'profile',
+		component: ProfileEditComponent
 	},
 	{
 		path: 'view',
