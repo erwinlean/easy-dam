@@ -1,93 +1,221 @@
-<header class="absolute top-0 right-0 p-4 flex items-center gap-4 bg-transparent z-50 backdrop-filter backdrop-blur-md">
-	<button *ngIf="showThemeOption" aria-label="Theme" (click)="onThemeToggle()" class="rounded-full p-2 bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
-	  	<svg class="h-6 w-6 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-			<path d="M12 3v1"></path>
-			<path d="M12 20v1"></path>
-			<path d="M4.22 4.22l.707.707"></path>
-			<path d="M19.07 19.07l.707.707"></path>
-			<path d="M1 12h1"></path>
-			<path d="M22 12h1"></path>
-			<path d="M4.22 19.78l.707-.707"></path>
-			<path d="M19.07 4.93l.707-.707"></path>
-			<circle cx="12" cy="12" r="5"></circle>
-	  	</svg>
-	</button>
-  
-	<div class="relative">
-		<button aria-label="Language" (click)="onLanguageChange()" class="rounded-full p-2 bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
-		  	<svg class="h-6 w-6 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-			  <circle cx="12" cy="12" r="10"></circle>
-			  <path d="M2 12h20"></path>
-			  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"></path>
-			  <path d="M12 2a15.3 15.3 0 0 0-4 10 15.3 15.3 0 0 0 4 10"></path>
-		  	</svg>
-		</button>
-		<div *ngIf="showLanguageMenu" class="absolute right-0 mt-2 w-32 bg-white border border-gray-300 rounded-lg shadow-lg">
-		  	<button class="block w-full px-4 py-2 text-gray-800 hover:bg-gray-200 text-left" (click)="setLanguage('en')">🇬🇧 Inglés</button>
-		  	<button class="block w-full px-4 py-2 text-gray-800 hover:bg-gray-200 text-left" (click)="setLanguage('es')">🇪🇸 Español</button>
-		  	<button class="block w-full px-4 py-2 text-gray-800 hover:bg-gray-200 text-left" (click)="setLanguage('it')">🇮🇹 Italiano</button>
-		</div>
-  	</div>  
-  
-	<div class="relative">
-	  	<button aria-label="Notifications" (click)="onNotificationsClick()" class="rounded-full p-2 bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
+<header class="absolute top-0 right-0 p-4 bg-transparent z-50 w-full flex items-center justify-end">
+	<!-- Desktop/Tablet Header: visible from md up -->
+	<div class="hidden md:flex items-center gap-4">
+	  	<!-- Theme button sector -->
+	  	<button *ngIf="showThemeOption" aria-label="Theme" (click)="onThemeToggle()" class="rounded-full p-2 bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
 			<svg class="h-6 w-6 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-		  		<path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-		  		<path d="M13.73 21a2 2 0 01-3.46 0"></path>
+			  	<path d="M12 3v1"></path>
+			  	<path d="M12 20v1"></path>
+			  	<path d="M4.22 4.22l.707.707"></path>
+			  	<path d="M19.07 19.07l.707.707"></path>
+			  	<path d="M1 12h1"></path>
+			  	<path d="M22 12h1"></path>
+			  	<path d="M4.22 19.78l.707-.707"></path>
+			  	<path d="M19.07 4.93l.707-.707"></path>
+			  	<circle cx="12" cy="12" r="5"></circle>
 			</svg>
 	  	</button>
-	  	<div *ngIf="showNotificationsMenu" class="absolute right-0 mt-2 w-64 bg-white border border-gray-300 rounded-lg shadow-lg">
-			<div class="flex items-center gap-2 p-3">
-		  		<svg class="h-5 w-5 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-					<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-					<polyline points="7 10 12 15 17 10"></polyline>
-					<line x1="12" y1="15" x2="12" y2="3"></line>
-		  		</svg>
-		  		<span class="text-gray-800">Nueva notificación</span>
-			</div>
-	  	</div>
-	</div>
-  
-	<div class="relative">
-	  	<button aria-label="Activities" (click)="onActivitiesClick()" class="rounded-full p-2 bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
-			<svg class="h-6 w-6 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-		  		<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-			</svg>
-	  	</button>
-	  	<div *ngIf="showActivitiesMenu" class="absolute right-0 mt-2 w-64 bg-white border border-gray-300 rounded-lg shadow-lg">
-			<div class="flex items-center gap-2 p-3">
-		  		<svg class="h-5 w-5 text-green-500" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+	  	<!-- Language selector sector -->
+	  	<div class="relative">
+			<button aria-label="Language" (click)="onLanguageChange()" class="rounded-full p-2 bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
+		  		<svg class="h-6 w-6 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
 					<circle cx="12" cy="12" r="10"></circle>
-					<polyline points="12 6 12 12 16 14"></polyline>
+					<path d="M2 12h20"></path>
+					<path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"></path>
+					<path d="M12 2a15.3 15.3 0 0 0-4 10 15.3 15.3 0 0 0 4 10"></path>
 		  		</svg>
-		  		<span class="text-gray-800">Actividad reciente</span>
+			</button>
+			<div *ngIf="showLanguageMenu" class="absolute right-0 mt-2 w-32 bg-white border border-gray-300 rounded-lg shadow-lg">
+			  	<button class="block w-full px-4 py-2 text-gray-800 hover:bg-gray-200 text-left" (click)="setLanguage('en')">🇬🇧 Inglés</button>
+			  	<button class="block w-full px-4 py-2 text-gray-800 hover:bg-gray-200 text-left" (click)="setLanguage('es')">🇪🇸 Español</button>
+			  	<button class="block w-full px-4 py-2 text-gray-800 hover:bg-gray-200 text-left" (click)="setLanguage('it')">🇮🇹 Italiano</button>
+			</div>
+	  	</div>
+	  	<!-- Notifications sector -->
+	  	<div class="relative">
+			<button aria-label="Notifications" (click)="onNotificationsClick()" class="rounded-full p-2 bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
+			  	<svg class="h-6 w-6 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+					<path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+					<path d="M13.73 21a2 2 0 01-3.46 0"></path>
+			  	</svg>
+			</button>
+			<div *ngIf="showNotificationsMenu" class="absolute right-0 mt-2 w-64 bg-white border border-gray-300 rounded-lg shadow-lg">
+		  		<div class="flex items-center gap-2 p-3">
+					<svg class="h-5 w-5 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+					  	<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+					  	<polyline points="7 10 12 15 17 10"></polyline>
+					  	<line x1="12" y1="15" x2="12" y2="3"></line>
+					</svg>
+					<span class="text-gray-800">Nueva notificación</span>
+		  		</div>
+			</div>
+		</div>
+	  	<!-- Activities sector -->
+	  	<div class="relative">
+			<button aria-label="Activities" (click)="onActivitiesClick()" class="rounded-full p-2 bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
+			  <svg class="h-6 w-6 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+				<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+			  </svg>
+			</button>
+			<div *ngIf="showActivitiesMenu" class="absolute right-0 mt-2 w-64 bg-white border border-gray-300 rounded-lg shadow-lg">
+			  	<div class="flex items-center gap-2 p-3">
+					<svg class="h-5 w-5 text-green-500" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+					  	<circle cx="12" cy="12" r="10"></circle>
+					  	<polyline points="12 6 12 12 16 14"></polyline>
+					</svg>
+					<span class="text-gray-800">Actividad reciente</span>
+			  	</div>
+			</div>
+	  	</div>
+	  	<!-- User sector -->
+	  	<div class="relative">
+			<button aria-label="User" (click)="onUserToggle()" class="rounded-full p-2 bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
+			  	<svg class="h-6 w-6 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+					<circle cx="12" cy="8" r="4"></circle>
+					<path d="M6 20a6 6 0 0112 0"></path>
+			  	</svg>
+			</button>
+			<div *ngIf="showUserMenu" class="absolute right-0 mt-2 w-40 bg-white border border-gray-300 rounded-lg shadow-lg">
+			  	<button class="flex items-center w-full px-4 py-2 text-gray-800 hover:bg-gray-200" (click)="goToProfile()">
+					<svg class="h-5 w-5 mr-2 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+					  	<path d="M20 21v-2a4 4 0 00-3-3.87"></path>
+					  	<path d="M4 21v-2a4 4 0 013-3.87"></path>
+					  	<circle cx="12" cy="7" r="4"></circle>
+					</svg>
+					Perfil
+			  	</button>
+			  	<button class="flex items-center w-full px-4 py-2 text-gray-800 hover:bg-gray-200" (click)="onExitClick()">
+					<svg class="h-5 w-5 mr-2 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+					  	<path d="M10 15l5-5-5-5"></path>
+					  	<path d="M15 12H3"></path>
+					</svg>
+					Salir
+			  	</button>
 			</div>
 	  	</div>
 	</div>
   
-	<div class="relative">
-	  	<button aria-label="User" (click)="onUserToggle()" class="rounded-full p-2 bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
+	<!-- Mobile Header: Hamburger button visible in mobile -->
+	<div class="md:hidden flex items-center">
+	  	<button aria-label="Menu" (click)="onMenuToggle()" class="rounded-full p-2 bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
 			<svg class="h-6 w-6 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-		  		<circle cx="12" cy="8" r="4"></circle>
-		  		<path d="M6 20a6 6 0 0112 0"></path>
+		  		<line x1="3" y1="12" x2="21" y2="12"></line>
+		  		<line x1="3" y1="6" x2="21" y2="6"></line>
+		  		<line x1="3" y1="18" x2="21" y2="18"></line>
 			</svg>
 	  	</button>
-	  	<div *ngIf="showUserMenu" class="absolute right-0 mt-2 w-40 bg-white border border-gray-300 rounded-lg shadow-lg">
-			<button class="flex items-center w-full px-4 py-2 text-gray-800 hover:bg-gray-200" (click)="goToProfile()">
-		  		<svg class="h-5 w-5 mr-2 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-					<path d="M20 21v-2a4 4 0 00-3-3.87"></path>
-					<path d="M4 21v-2a4 4 0 013-3.87"></path>
-					<circle cx="12" cy="7" r="4"></circle>
-		  		</svg>
-		  		Perfil
-			</button>
-			<button class="flex items-center w-full px-4 py-2 text-gray-800 hover:bg-gray-200" (click)="onExitClick()">
-		  		<svg class="h-5 w-5 mr-2 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-					<path d="M10 15l5-5-5-5"></path>
-					<path d="M15 12H3"></path>
-		  		</svg>
-		  		Salir
-			</button>
-	  	</div>
 	</div>
-</header>  
+</header>
+  
+  <!-- Mobile Sliding Menu Panel -->
+<div class="md:hidden fixed top-0 z-[999] right-0 h-full w-4/6 bg-white shadow-lg transition-transform duration-300 transform"
+	[ngClass]="{'translate-x-0': isMenuOpen, 'translate-x-full': !isMenuOpen}">
+	<div class="p-4">
+	  	<!-- Close button sector -->
+	  	<button aria-label="Close menu" (click)="onMenuToggle()" class="rounded-full p-2 bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
+			<svg class="h-6 w-6 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+			  	<line x1="18" y1="6" x2="6" y2="18"></line>
+			  	<line x1="6" y1="6" x2="18" y2="18"></line>
+			</svg>
+	  	</button>
+	</div>
+	<nav class="flex flex-col gap-4 p-4">
+	  	<!-- Theme button sector -->
+	  	<button *ngIf="showThemeOption" aria-label="Theme" (click)="onThemeToggle()" class="w-[75%] flex items-center p-2 bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
+			<svg class="h-6 w-6 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+			  	<path d="M12 3v1"></path>
+			  	<path d="M12 20v1"></path>
+			  	<path d="M4.22 4.22l.707.707"></path>
+			  	<path d="M19.07 19.07l.707.707"></path>
+			  	<path d="M1 12h1"></path>
+			  	<path d="M22 12h1"></path>
+			  	<path d="M4.22 19.78l.707-.707"></path>
+			  	<path d="M19.07 4.93l.707-.707"></path>
+			  	<circle cx="12" cy="12" r="5"></circle>
+			</svg>
+			<span class="ml-2">Theme</span>
+	  	</button>
+	  	<!-- Language selector sector -->
+	  	<div class="relative">
+			<button aria-label="Language" (click)="onLanguageChange()" class="w-[75%] flex items-center p-2 bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
+			  	<svg class="h-6 w-6 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+					<circle cx="12" cy="12" r="10"></circle>
+					<path d="M2 12h20"></path>
+					<path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"></path>
+					<path d="M12 2a15.3 15.3 0 0 0-4 10 15.3 15.3 0 0 0 4 10"></path>
+			  	</svg>
+			  	<span class="ml-2">Language</span>
+			</button>
+			<div *ngIf="showLanguageMenu" class="mt-2 w-full bg-white border border-gray-300 rounded-lg shadow-lg">
+			  	<button class="block w-full px-4 py-2 text-gray-800 hover:bg-gray-200 text-left" (click)="setLanguage('en')">🇬🇧 English</button>
+			  	<button class="block w-full px-4 py-2 text-gray-800 hover:bg-gray-200 text-left" (click)="setLanguage('es')">🇪🇸 Spanish</button>
+			  	<button class="block w-full px-4 py-2 text-gray-800 hover:bg-gray-200 text-left" (click)="setLanguage('it')">🇮🇹 Italian</button>
+			</div>
+	  	</div>
+	  	<!-- Notifications sector -->
+	  	<div class="relative">
+			<button aria-label="Notifications" (click)="onNotificationsClick()" class="w-[75%] flex items-center p-2 bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
+			  	<svg class="h-6 w-6 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+					<path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+					<path d="M13.73 21a2 2 0 01-3.46 0"></path>
+			  	</svg>
+			  	<span class="ml-2">Notifications</span>
+			</button>
+			<div *ngIf="showNotificationsMenu" class="mt-2 w-full bg-white border border-gray-300 rounded-lg shadow-lg">
+			  	<div class="flex items-center gap-2 p-3">
+					<svg class="h-5 w-5 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+					  	<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+					  	<polyline points="7 10 12 15 17 10"></polyline>
+					  	<line x1="12" y1="15" x2="12" y2="3"></line>
+					</svg>
+					<span class="text-gray-800">Nueva notificación</span>
+			  	</div>
+			</div>
+	  	</div>
+	  	<!-- Activities sector -->
+	  	<div class="relative">
+			<button aria-label="Activities" (click)="onActivitiesClick()" class="w-[75%] flex items-center p-2 bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
+			  	<svg class="h-6 w-6 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+					<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+			  	</svg>
+			  	<span class="ml-2">Activities</span>
+			</button>
+			<div *ngIf="showActivitiesMenu" class="mt-2 w-full bg-white border border-gray-300 rounded-lg shadow-lg">
+			  	<div class="flex items-center gap-2 p-3">
+					<svg class="h-5 w-5 text-green-500" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+					  	<circle cx="12" cy="12" r="10"></circle>
+					  	<polyline points="12 6 12 12 16 14"></polyline>
+					</svg>
+					<span class="text-gray-800">Actividad reciente</span>
+			  	</div>
+			</div>
+	  	</div>
+	  	<!-- User sector -->
+	  	<div class="relative">
+			<button aria-label="User" (click)="onUserToggle()" class="w-[75%] flex items-center p-2 bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
+			  	<svg class="h-6 w-6 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+					<circle cx="12" cy="8" r="4"></circle>
+					<path d="M6 20a6 6 0 0112 0"></path>
+			  	</svg>
+			  	<span class="ml-2">User</span>
+			</button>
+			<div *ngIf="showUserMenu" class="mt-2 w-full bg-white border border-gray-300 rounded-lg shadow-lg">
+			  	<button class="flex items-center w-full px-4 py-2 text-gray-800 hover:bg-gray-200" (click)="goToProfile()">
+					<svg class="h-5 w-5 mr-2 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+					  	<path d="M20 21v-2a4 4 0 00-3-3.87"></path>
+					  	<path d="M4 21v-2a4 4 0 013-3.87"></path>
+					  	<circle cx="12" cy="7" r="4"></circle>
+					</svg>
+					Perfil
+			  	</button>
+			  	<button class="flex items-center w-full px-4 py-2 text-gray-800 hover:bg-gray-200" (click)="onExitClick()">
+					<svg class="h-5 w-5 mr-2 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+					  	<path d="M10 15l5-5-5-5"></path>
+					  	<path d="M15 12H3"></path>
+					</svg>
+					Salir
+			  	</button>
+			</div>
+	  	</div>
+	</nav>
+</div>

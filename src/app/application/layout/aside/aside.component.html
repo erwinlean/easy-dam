@@ -1,121 +1,206 @@
-<div class="aside-container relative h-full">
-	<aside
-	  	#asideRef
-	  	[ngStyle]="{ 'width.px': currentWidth }"
-	  	class="bg-gray-800 fixed text-white h-full relative p-4 shadow-lg transition-all duration-300 ease-in-out z-30">	
+<!-- Mobile Hamburger Button -->
+<button *ngIf="isMobile" (click)="toggleMobileMenu()"
+	class="z-[500] fixed top-4 left-4 z-40 p-2 bg-gray-800 text-white rounded focus:outline-none">
+	<svg *ngIf="!mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+		stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+		<line x1="3" y1="12" x2="21" y2="12"></line>
+		<line x1="3" y1="6" x2="21" y2="6"></line>
+		<line x1="3" y1="18" x2="21" y2="18"></line>
+	</svg>
+	<svg *ngIf="mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+		stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+		<line x1="18" y1="6" x2="6" y2="18"></line>
+		<line x1="6" y1="6" x2="18" y2="18"></line>
+	</svg>
+</button>
 
+<div class="aside-container relative h-full">
+	<!-- Mobile Aside: Off-canvas menu -->
+	<aside *ngIf="isMobile"
+		[ngClass]="{'translate-x-0': mobileMenuOpen, '-translate-x-full': !mobileMenuOpen}"
+		class="bg-gray-800 fixed text-white h-full p-4 shadow-lg transition-transform duration-300 ease-in-out z-30 w-[80vw]">
+
+		<nav class="mt-12">
+			<ul class="space-y-4">
+				<li>
+					<button (click)="navigateToDashboard(); closeMobileMenu()"
+						[ngClass]="{ 'justify-center': currentWidth <= initialWidth / 2, 'flex items-center gap-2': true }"
+						class="w-full block py-2 px-4 rounded hover:bg-blue-600 transition duration-200">
+						<svg xmlns="http://www.w3.org/2000/svg"
+							[ngClass]="currentWidth === minWidth ? 'h-12 w-12' : 'h-6 w-6'"
+							fill="none" stroke="currentColor" stroke-width="2"
+							stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+							<rect x="3" y="3" width="7" height="7"></rect>
+							<rect x="14" y="3" width="7" height="7"></rect>
+							<rect x="14" y="14" width="7" height="7"></rect>
+							<rect x="3" y="14" width="7" height="7"></rect>
+						</svg>
+						<span>Dashboard</span>
+					</button>
+				</li>
+				<li>
+					<button (click)="navigateToCompany(); closeMobileMenu()"
+						[ngClass]="{ 'justify-center': currentWidth <= initialWidth / 2, 'flex items-center gap-2': true }"
+						class="w-full block py-2 px-4 rounded hover:bg-blue-600 transition duration-200">
+						<svg xmlns="http://www.w3.org/2000/svg"
+							[ngClass]="currentWidth === minWidth ? 'h-12 w-12' : 'h-6 w-6'"
+							fill="none" stroke="currentColor" stroke-width="2"
+							stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+							<circle cx="12" cy="12" r="3"></circle>
+							<path
+								d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33
+								1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51
+								1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 
+								1.65 0 0 0 .33-1.82V9a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 
+								1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 
+								1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 
+								1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 
+								1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z">
+							</path>
+						</svg>
+						<span>Settings</span>
+					</button>
+				</li>
+				<li>
+					<button (click)="navigateToUsers(); closeMobileMenu()"
+						[ngClass]="{ 'justify-center': currentWidth <= initialWidth / 2, 'flex items-center gap-2': true }"
+						class="w-full block py-2 px-4 rounded hover:bg-blue-600 transition duration-200">
+						<svg xmlns="http://www.w3.org/2000/svg"
+							[ngClass]="currentWidth === minWidth ? 'h-12 w-12' : 'h-6 w-6'"
+							fill="none" stroke="currentColor" stroke-width="2"
+							stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+							<circle cx="12" cy="7" r="4"></circle>
+							<path d="M20 21v-2a4 4 0 0 0-3-3.87"></path>
+							<path d="M4 21v-2a4 4 0 0 1 3-3.87"></path>
+						</svg>
+						<span>User Management</span>
+					</button>
+				</li>
+				<li>
+					<button (click)="navigateToAssets(); closeMobileMenu()"
+						[ngClass]="{ 'justify-center': currentWidth <= initialWidth / 2, 'flex items-center gap-2': true }"
+						class="w-full block py-2 px-4 rounded hover:bg-blue-600 transition duration-200">
+						<svg xmlns="http://www.w3.org/2000/svg"
+							[ngClass]="currentWidth === minWidth ? 'h-12 w-12' : 'h-6 w-6'"
+							fill="none" stroke="currentColor" stroke-width="2"
+							stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+							<path d="M3 7h4l2 3h10v10H3z"></path>
+						</svg>
+						<span>Assets</span>
+					</button>
+				</li>
+				<li>
+					<button (click)="navigateToCompaniesAdmin(); closeMobileMenu()"
+						[ngClass]="{ 'justify-center': currentWidth <= initialWidth / 2, 'flex items-center gap-2': true }"
+						class="w-full block py-2 px-4 rounded hover:bg-blue-600 transition duration-200">
+						<svg xmlns="http://www.w3.org/2000/svg"
+							[ngClass]="currentWidth === minWidth ? 'h-12 w-12' : 'h-6 w-6'"
+							fill="none" stroke="currentColor" stroke-width="2"
+							stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+							<path d="M12 2 L15 8 H21 L17 12 L19 18 L12 14 L5 18 L7 12 L3 8 H9 L12 2 Z"></path>
+							<circle cx="12" cy="14" r="3"></circle>
+						</svg>
+						<span>Super Admin</span>
+					</button>
+				</li>				
+			</ul>
+		</nav>
+		<div class="w-full h-[48px] absolute bottom-0 left-0 bg-gray-800 border-t-4 border-gray-600 text-center place-items-center p-4">
+			<button (click)="toggleMobileMenu()"
+				class="w-full h-full absolute bottom-0 left-[50%] text-white">
+				<img src="assets/icons/icon-panelClose.png" alt="Cerrar panel" class="h-6 w-6">
+			</button>
+		</div>
+	</aside>
+
+	<!-- Desktop/Tablet Aside -->
+	<aside *ngIf="!isMobile"
+		#asideRef
+		[ngStyle]="{ 'width.px': currentWidth }"
+		class="bg-gray-800 fixed text-white h-full relative p-4 shadow-lg transition-all duration-300 ease-in-out z-30">
+		
 		<div class="w-full font-bold cursor-pointer flex items-center gap-4" (click)="navigateToDashboard()">
 			<img src="/assets/logos/easy-dam-logo.png" alt="Easy dam logo" title="Easy dam logo" class="w-auto max-h-[5rem]">
 			<span *ngIf="currentWidth > initialWidth / 2">Easy DAM</span>
 		</div>
 
-	  	<nav class="mt-12">
+		<nav class="mt-12">
 			<ul class="space-y-4">
-		  		<li>
-					<button
-				  		(click)="navigateToDashboard()"
-				  		[ngClass]="{ 'justify-center': currentWidth <= initialWidth / 2, 'flex items-center gap-2': true }"
+				<li>
+					<button (click)="navigateToDashboard()"
+						[ngClass]="{ 'justify-center': currentWidth <= initialWidth / 2, 'flex items-center gap-2': true }"
 						class="w-full block py-2 px-4 rounded hover:bg-blue-600 transition duration-200">
-				  		<svg
-							xmlns="http://www.w3.org/2000/svg"
+						<svg xmlns="http://www.w3.org/2000/svg"
 							[ngClass]="currentWidth === minWidth ? 'h-12 w-12' : 'h-6 w-6'"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							viewBox="0 0 24 24">
+							fill="none" stroke="currentColor" stroke-width="2"
+							stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
 							<rect x="3" y="3" width="7" height="7"></rect>
 							<rect x="14" y="3" width="7" height="7"></rect>
 							<rect x="14" y="14" width="7" height="7"></rect>
 							<rect x="3" y="14" width="7" height="7"></rect>
-				  		</svg>			  
-				  		<span *ngIf="currentWidth > initialWidth / 2">Dashboard</span>
+						</svg>
+						<span *ngIf="currentWidth > initialWidth / 2">Dashboard</span>
 					</button>
-		  		</li>
-		  		<li>
-					<button
-					  	(click)="navigateToCompany()"
-					  	[ngClass]="{ 'justify-center': currentWidth <= initialWidth / 2, 'flex items-center gap-2': true }"
-					  	class="w-full block py-2 px-4 rounded hover:bg-blue-600 transition duration-200">
-				  		<svg
-							xmlns="http://www.w3.org/2000/svg"
+				</li>
+				<li>
+					<button (click)="navigateToCompany()"
+						[ngClass]="{ 'justify-center': currentWidth <= initialWidth / 2, 'flex items-center gap-2': true }"
+						class="w-full block py-2 px-4 rounded hover:bg-blue-600 transition duration-200">
+						<svg xmlns="http://www.w3.org/2000/svg"
 							[ngClass]="currentWidth === minWidth ? 'h-12 w-12' : 'h-6 w-6'"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							viewBox="0 0 24 24">
+							fill="none" stroke="currentColor" stroke-width="2"
+							stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
 							<circle cx="12" cy="12" r="3"></circle>
 							<path
 								d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33
-							 	1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51
-							 	1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 
-							 	1.65 0 0 0 .33-1.82V9a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 
-							 	1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 
-							 	1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 
-							 	1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 
-							 	1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z">
+								1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51
+								1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 
+								1.65 0 0 0 .33-1.82V9a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 
+								1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 
+								1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 
+								1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 
+								1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z">
 							</path>
-				  		</svg>
-				  		<span *ngIf="currentWidth > initialWidth / 2">Settings</span>
+						</svg>
+						<span *ngIf="currentWidth > initialWidth / 2">Settings</span>
 					</button>
-		  		</li>
-		  		<li>
-					<button
-				  		(click)="navigateToUsers()"
-				  		[ngClass]="{ 'justify-center': currentWidth <= initialWidth / 2, 'flex items-center gap-2': true }"
+				</li>
+				<li>
+					<button (click)="navigateToUsers()"
+						[ngClass]="{ 'justify-center': currentWidth <= initialWidth / 2, 'flex items-center gap-2': true }"
 						class="w-full block py-2 px-4 rounded hover:bg-blue-600 transition duration-200">
-				  		<svg
-							xmlns="http://www.w3.org/2000/svg"
+						<svg xmlns="http://www.w3.org/2000/svg"
 							[ngClass]="currentWidth === minWidth ? 'h-12 w-12' : 'h-6 w-6'"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							viewBox="0 0 24 24">
+							fill="none" stroke="currentColor" stroke-width="2"
+							stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
 							<circle cx="12" cy="7" r="4"></circle>
 							<path d="M20 21v-2a4 4 0 0 0-3-3.87"></path>
 							<path d="M4 21v-2a4 4 0 0 1 3-3.87"></path>
-				  		</svg>
-				  	<span *ngIf="currentWidth > initialWidth / 2">User Management</span>
+						</svg>
+						<span *ngIf="currentWidth > initialWidth / 2">User Management</span>
 					</button>
-		  		</li>
-				  <li>
-					<button
-						(click)="navigateToAssets()"
+				</li>
+				<li>
+					<button (click)="navigateToAssets()"
 						[ngClass]="{ 'justify-center': currentWidth <= initialWidth / 2, 'flex items-center gap-2': true }"
 						class="w-full block py-2 px-4 rounded hover:bg-blue-600 transition duration-200">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
+						<svg xmlns="http://www.w3.org/2000/svg"
 							[ngClass]="currentWidth === minWidth ? 'h-12 w-12' : 'h-6 w-6'"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							viewBox="0 0 24 24">
+							fill="none" stroke="currentColor" stroke-width="2"
+							stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
 							<path d="M3 7h4l2 3h10v10H3z"></path>
 						</svg>
 						<span *ngIf="currentWidth > initialWidth / 2">Assets</span>
 					</button>
 				</li>
 				<li>
-					<button
-						(click)="navigateToCompaniesAdmin()"
+					<button (click)="navigateToCompaniesAdmin()"
 						[ngClass]="{ 'justify-center': currentWidth <= initialWidth / 2, 'flex items-center gap-2': true }"
 						class="w-full block py-2 px-4 rounded hover:bg-blue-600 transition duration-200">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
+						<svg xmlns="http://www.w3.org/2000/svg"
 							[ngClass]="currentWidth === minWidth ? 'h-12 w-12' : 'h-6 w-6'"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							viewBox="0 0 24 24">
+							fill="none" stroke="currentColor" stroke-width="2"
+							stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
 							<path d="M12 2 L15 8 H21 L17 12 L19 18 L12 14 L5 18 L7 12 L3 8 H9 L12 2 Z"></path>
 							<circle cx="12" cy="14" r="3"></circle>
 						</svg>
@@ -123,18 +208,13 @@
 					</button>
 				</li>				
 			</ul>
-	  	</nav>
-		<div
-			class="w-full h-[48px] absolute bottom-0 left-0 bg-gray-800 border-t-4 border-gray-600 text-center place-items-center p-4">
-			<button
-				*ngIf="currentWidth > minWidth"
-				(click)="toggleAside()"
+		</nav>
+		<div class="w-full h-[48px] absolute bottom-0 left-0 bg-gray-800 border-t-4 border-gray-600 text-center place-items-center p-4">
+			<button *ngIf="currentWidth > minWidth" (click)="toggleAside()"
 				class="w-full h-full absolute bottom-0 left-[50%] text-white">
 				<img src="assets/icons/icon-panelClose.png" alt="Cerrar panel" class="h-6 w-6">
 			</button>
-			<button
-				*ngIf="currentWidth === minWidth"
-				(click)="toggleAside()"
+			<button *ngIf="currentWidth === minWidth" (click)="toggleAside()"
 				class="w-full h-full absolute bottom-0 left-[50%] text-white">
 				<img src="assets/icons/icon-panelOpen.png" alt="Abrir panel" class="h-6 w-6">
 			</button>

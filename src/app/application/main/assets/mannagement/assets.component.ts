@@ -63,11 +63,7 @@ export class AssetsComponent implements OnInit {
 				results.push({ folder, path: currentPath });
 				matchFound = true;
 			}
-			if (
-				!matchFound &&
-				folder.assets &&
-				folder.assets.some((asset: any) => asset.name.toLowerCase().includes(term.toLowerCase()))
-			) {
+			if ( !matchFound && folder.assets && folder.assets.some((asset: any) => asset.name.toLowerCase().includes(term.toLowerCase()))) {
 				results.push({ folder, path: currentPath });
 				matchFound = true;
 			}
@@ -83,4 +79,16 @@ export class AssetsComponent implements OnInit {
 		this.searchTerm = '';
 		this.searchResults = [];
 	};
+
+	public onShare() {
+		console.log("Compartir acción");
+	}
+	
+	public onExport() {
+		console.log("Exportar acción");
+	}
+	
+	public onLoad() {
+		console.log("Cargar acción");
+	}
 };

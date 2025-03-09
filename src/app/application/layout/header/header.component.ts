@@ -19,6 +19,8 @@ export class HeaderComponent {
 	public showUserMenu: boolean = false;
 	public language: string = '';
 
+	public isMenuOpen: boolean = false;
+
 	constructor(
 		private router: Router,
 		private eRef: ElementRef
@@ -29,6 +31,10 @@ export class HeaderComponent {
 		if (!this.eRef.nativeElement.contains(event.target)) {
 			this.closeAllMenus();
 		};
+	};
+
+	private closeMobileMenu(): void {
+	    this.isMenuOpen = false;
 	};
 
 	private closeAllMenus(): void {
@@ -52,11 +58,15 @@ export class HeaderComponent {
 		};
 	};
 
-	public setLanguage(language: string): void {
+	public onMenuToggle(): void {
+		this.isMenuOpen = !this.isMenuOpen;
 		this.closeAllMenus();
-		this.language = language;
 	};
 
+	public goToProfile(): void {
+		this.router.navigate(['/profile']);
+		this.closeAllMenus();
+	};
 	public onNotificationsClick(): void {
 		if (!this.showNotificationsMenu) {
 			this.closeAllMenus();
@@ -65,7 +75,6 @@ export class HeaderComponent {
 			this.closeAllMenus();
 		};
 	};
-
 	public onActivitiesClick(): void {
 		if (!this.showActivitiesMenu) {
 			this.closeAllMenus();
@@ -74,7 +83,6 @@ export class HeaderComponent {
 			this.closeAllMenus();
 		};
 	};
-
 	public onUserToggle(): void {
 		if (!this.showUserMenu) {
 			this.closeAllMenus();
@@ -83,14 +91,13 @@ export class HeaderComponent {
 			this.closeAllMenus();
 		};
 	};
-
-	public goToProfile(): void {
-		this.router.navigate(['/profile']);
-		this.closeAllMenus();
-	};
-
 	public onExitClick(): void {
 		this.router.navigate(['/login']);
 		this.closeAllMenus();
+	};
+
+	public setLanguage(language: string): void {
+		this.closeAllMenus();
+		this.language = language;
 	};
 };

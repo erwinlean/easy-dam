@@ -17,6 +17,9 @@ export class AsideComponent implements AfterViewInit, OnDestroy {
   	readonly initialWidth: number = 256;
   	readonly minWidth: number = 85;
 
+	public isMobile: boolean = false;
+	public mobileMenuOpen: boolean = false;
+
 	public darkTheme: boolean = false;
 	public light: boolean = true;
 
@@ -41,25 +44,31 @@ export class AsideComponent implements AfterViewInit, OnDestroy {
 		@Inject(PLATFORM_ID) private platformId: Object
 	) {
     	this.isBrowser = (typeof window !== 'undefined') && isPlatformBrowser(platformId);
+
+        this.isMobile = this.isBrowser ? window.innerWidth < 768 : false;
   	};
 
-  	ngAfterViewInit(): void {
-    	if (this.isBrowser) {
-      		const aside = this.asideRef.nativeElement;
-      		aside.addEventListener('mousedown', this.boundOnMouseDown);
-      		document.addEventListener('mousemove', this.boundOnMouseMove);
-      		document.addEventListener('mouseup', this.boundOnMouseUp);
-    	};
-  	};
+	ngAfterViewInit(): void {
+		if (this.isBrowser && !this.isMobile && this.asideRef) {
+		  	const aside = this.asideRef.nativeElement;
+		  	aside.addEventListener('mousedown', this.boundOnMouseDown);
+		  	document.addEventListener('mousemove', this.boundOnMouseMove);
+		  	document.addEventListener('mouseup', this.boundOnMouseUp);
+		}
+	}	  
 
   	ngOnDestroy(): void {
-  	  	if (this.isBrowser) {
+  	  	if (this.isBrowser && this.asideRef) {
   	    	const aside = this.asideRef.nativeElement;
   	    	aside.removeEventListener('mousedown', this.boundOnMouseDown);
   	    	document.removeEventListener('mousemove', this.boundOnMouseMove);
   	    	document.removeEventListener('mouseup', this.boundOnMouseUp);
   	  	};
   	};
+
+	public closeMobileMenu(): void {
+		this.mobileMenuOpen = false;
+	};
 
   	public toggleAside(): void {
   	  	this.currentWidth = this.currentWidth === this.initialWidth ? this.minWidth : this.initialWidth;
@@ -108,5 +117,9 @@ export class AsideComponent implements AfterViewInit, OnDestroy {
 
 	public navigateToCompaniesAdmin(): void {
 		this.router.navigate(['app/companies']);
+	};
+
+	public toggleMobileMenu(): void {
+		this.mobileMenuOpen = !this.mobileMenuOpen;
 	};
 };
