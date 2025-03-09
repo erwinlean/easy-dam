@@ -2,38 +2,40 @@
 
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AssetsService } from '../../../services/assets.service';
+import { AssetsService } from '../../../../services/assets.service';
 
 @Component({
 	selector: 'app-assets',
-	standalone: true,
-	imports: [CommonModule],
 	templateUrl: './assets.component.html',
-	styleUrls: ['./assets.component.scss']
+	styleUrls: ['./assets.component.scss'],
+	standalone: true,
+	imports: [
+		CommonModule
+	],
 })
 export class AssetsComponent implements OnInit {
-	levels: any[][] = [];
+	public levels: any[][] = [];
 
-	selectedFolders: any[] = [];
-	selectedFolder: any = null;
+	public selectedFolders: any[] = [];
+	public selectedFolder: any = null;
 
-	allFolders: any[] = [];
+	private allFolders: any[] = [];
 
-	searchTerm: string = '';
-	searchResults: any[] = [];
+	public searchTerm: string = '';
+	public searchResults: any[] = [];
 
 	constructor(
 		private assetsService: AssetsService
 	) {}
 
-	ngOnInit(): void {
+	public ngOnInit(): void {
 		this.assetsService.getDataByLevel(1).subscribe((data: any) => {
 			this.levels[0] = data;
 			this.allFolders = data;
 		});
 	}
 
-	onSelectFolder(folder: any, levelIndex: number): void {
+	public onSelectFolder(folder: any, levelIndex: number): void {
 		this.selectedFolders[levelIndex] = folder;
 		this.levels = this.levels.slice(0, levelIndex + 1);
 
@@ -43,7 +45,7 @@ export class AssetsComponent implements OnInit {
 		this.selectedFolder = folder;
 	}
 
-	onSearch(term: string): void {
+	public onSearch(term: string): void {
 		this.searchTerm = term;
 		if (term.trim().length === 0) {
 			this.searchResults = [];
@@ -76,7 +78,7 @@ export class AssetsComponent implements OnInit {
 		return results;
 	}
 
-	onSelectSearchResult(result: any): void {
+	public onSelectSearchResult(result: any): void {
 		this.selectedFolder = result.folder;
 		this.searchTerm = '';
 		this.searchResults = [];

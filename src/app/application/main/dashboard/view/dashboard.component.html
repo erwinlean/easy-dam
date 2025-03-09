@@ -1,0 +1,34 @@
+<div class="dashboard mt-20 p-20">
+	<mat-card class="mat-elevation-z8">
+	  	<mat-card-header>
+			<mat-card-title>Dashboard</mat-card-title>
+	  	</mat-card-header>
+	  	<mat-card-content>
+			<div class="statistics">
+			  	<div class="stat">
+					<h3>Total Assets</h3>
+					<p>{{ assetsData.totalAssets }}</p>
+			  	</div>
+			  	<div class="stat">
+					<h3>Assets Created This Month</h3>
+					<p>{{ assetsData.createdThisMonth }}</p>
+			  	</div>
+			  	<div class="stat">
+					<h3>Total Folders</h3>
+					<p>{{ assetsData.totalFolders }}</p>
+			  	</div>
+			</div>
+
+			<div class="charts">
+			  	<div style="display: block;">
+					<canvas baseChart
+					  	[datasets]="activityChartData.datasets"
+					  	[labels]="activityChartData.labels"
+					  	[options]="chartOptions"
+					  	[legend]="true" >
+					</canvas>
+			  	</div>
+			</div>
+	  	</mat-card-content>
+	</mat-card>
+</div>

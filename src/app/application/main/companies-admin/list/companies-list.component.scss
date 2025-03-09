@@ -1,0 +1,16 @@
+.dashboard {
+	.mat-card {
+	  	margin: 20px;
+	}
+	.statistics {
+	  	display: flex;
+	  	justify-content: space-around;
+	  	margin-bottom: 20px;
+	}
+	.stat {
+	  	text-align: center;
+	}
+	.charts {
+	  	margin-top: 20px;
+	}
+}  

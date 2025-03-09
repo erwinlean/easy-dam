@@ -35,7 +35,7 @@
 		  		</li>
 		  		<li>
 					<button
-					  	(click)="navigateToSettings()"
+					  	(click)="navigateToCompany()"
 					  	[ngClass]="{ 'justify-center': currentWidth <= initialWidth / 2, 'flex items-center gap-2': true }"
 					  	class="w-full block py-2 px-4 rounded hover:bg-blue-600 transition duration-200">
 				  		<svg
@@ -64,7 +64,7 @@
 		  		</li>
 		  		<li>
 					<button
-				  		(click)="navigateToUserManagement()"
+				  		(click)="navigateToUsers()"
 				  		[ngClass]="{ 'justify-center': currentWidth <= initialWidth / 2, 'flex items-center gap-2': true }"
 						class="w-full block py-2 px-4 rounded hover:bg-blue-600 transition duration-200">
 				  		<svg
@@ -104,7 +104,7 @@
 				</li>
 				<li>
 					<button
-						(click)="navigateToRandom()"
+						(click)="navigateToCompaniesAdmin()"
 						[ngClass]="{ 'justify-center': currentWidth <= initialWidth / 2, 'flex items-center gap-2': true }"
 						class="w-full block py-2 px-4 rounded hover:bg-blue-600 transition duration-200">
 						<svg
@@ -116,15 +116,12 @@
 							stroke-linecap="round"
 							stroke-linejoin="round"
 							viewBox="0 0 24 24">
-							<polyline points="16 3 21 3 21 8"></polyline>
-							<line x1="4" y1="20" x2="21" y2="3"></line>
-							<polyline points="21 16 21 21 16 21"></polyline>
-							<polyline points="5 4 3 6 5 8"></polyline>
-							<line x1="21" y1="16" x2="14" y2="9"></line>
+							<path d="M12 2 L15 8 H21 L17 12 L19 18 L12 14 L5 18 L7 12 L3 8 H9 L12 2 Z"></path>
+							<circle cx="12" cy="14" r="3"></circle>
 						</svg>
-						<span *ngIf="currentWidth > initialWidth / 2">Random</span>
+						<span *ngIf="currentWidth > initialWidth / 2">Super Admin</span>
 					</button>
-				</li>
+				</li>				
 			</ul>
 	  	</nav>
 		<div

@@ -90,23 +90,23 @@ export class AsideComponent implements AfterViewInit, OnDestroy {
   	  	this.asideRef.nativeElement.classList.remove('dragging');
   	};
 
-  	public navigateToDashboard(): void {
-  	  	this.router.navigate(['app/dashboard']);
-  	};
+	public navigateToDashboard(): void {
+		this.router.navigate(['app/dashboard']);
+	};
 
-  	public navigateToSettings(): void {
-  	  	this.router.navigate(['app/settings']);
-  	};
-
-  	public navigateToUserManagement(): void {
-  	  	this.router.navigate(['app/user-management']);
-  	};
+	public navigateToCompany(): void {
+		this.router.navigate(['app/company']);
+	};
 
 	public navigateToAssets(): void {
 		this.router.navigate(['app/assets']);
-  	};
+	};
 
-  	public navigateToRandom(): void {
-		this.router.navigate(['app/random']);
+	public navigateToUsers(): void {
+		this.router.navigate(['app/users']);
+	};
+
+	public navigateToCompaniesAdmin(): void {
+		this.router.navigate(['app/companies']);
 	};
 };

@@ -7,12 +7,6 @@ import { ForbiddenComponent } from './forbidden-component/forbidden.component';
 import { NotFoundComponent } from '../webapp/not-found-component/not-found.component';
 import { LayoutComponent } from './layout/layout.component';
 
-import { DashboardComponent } from './main/dashboard/dashboard.component';
-import { SettingComponent } from './main/setting/setting.component';
-import { AssetsComponent } from './main/assets/assets.component';
-import { UserManagementComponent } from './main/user-management/user-management.component';
-
-
 const routes: Routes = [
 	{
 		path: 'auth',
@@ -24,21 +18,25 @@ const routes: Routes = [
 		children: [
 		  	{
 				path: 'dashboard',
-				component: DashboardComponent
+				loadChildren: () => import('./main/dashboard/dashboard.module').then(m => m.DashboardModule)
 		  	},
 		  	{
-				path: 'setting',
-				component: SettingComponent
+				path: 'company',
+				loadChildren: () => import('./main/company/company.module').then(m => m.CompanyModule)
 		  	},
 		  	{
 				path: 'assets',
-				component: AssetsComponent
+				loadChildren: () => import('./main/assets/assets.module').then(m => m.AssetsModule)
 		  	},
 		  	{
-				path: 'user-management',
-				component: UserManagementComponent
+				path: 'users',
+				loadChildren: () => import('./main/users/users.module').then(m => m.UsersModule)
 		  	},
-		  	{ path: '', pathMatch: 'full', redirectTo: 'dashboard' }
+			{
+				path: 'companies',
+				loadChildren: () => import('./main/companies-admin/companies-admin.module').then(m => m.CompaniesAdminModule)
+			},
+		  { path: '', pathMatch: 'full', redirectTo: 'dashboard' }
 		]
 	},
 	{
@@ -58,4 +56,4 @@ const routes: Routes = [
 	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule]
 })
-export class AppRoutingModule { };
+export class AppRoutingModule { }
